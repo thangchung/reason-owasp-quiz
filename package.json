@@ -2,14 +2,15 @@
   "name": "reason-owasp-quiz",
   "version": "0.1.0",
   "scripts": {
-    "build": "bsb -make-world",
-    "start": "bsb -make-world -w",
+    "test": "NODE_ENV=production yarn build",
+    "start": "yarn run dev | yarn run bsb-watch",
     "dev": "webpack-dev-server --mode=development",
     "static": "node scripts/serveStatic.js",
-    "clean": "bsb -clean-world",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack -w --mode=development",
-    "webpack:production": "NODE_ENV=production webpack --mode=production"
+    "bsb-watch": "bsb -make-world -w",
+    "build": "bsb -make-world && webpack  && cp -av public/* dist",
+    "bsb-build": "bsb -make-world",
+    "analyze": "NODE_ENV=analyze yarn build; analyze-bundle -b dist/build/main.js -s dist/build/stats.json",
+    "clean": "bsb -clean-world"
   },
   "keywords": [
     "BuckleScript"
@@ -17,6 +18,8 @@
   "author": "Thang Chung",
   "license": "MIT",
   "dependencies": {
+    "bs-director": "^0.0.6",
+    "bs-fetch": "^0.2.1",
     "react": "^16.2.0",
     "react-dom": "^16.3.0",
     "reason-react": ">=0.3.4"

@@ -16,7 +16,7 @@ let publicUrl = '';
 
 module.exports = {
   context: __dirname,
-  entry: './lib/js/src/Index.bs.js',
+  entry: './lib/js/src/index.bs.js',
   output: {
     filename: '[name].js',
     path: path.join(__dirname, './dist/build'),
@@ -28,7 +28,7 @@ module.exports = {
   resolve: {
     alias: {
       src: path.resolve(__dirname, 'src/'),
-      // director: 'director/build/director',
+      director: 'director/build/director',
     },
   },
   module: {
